@@ -1,0 +1,6 @@
+USE videoclub;
+SELECT 
+	DNI,
+	NOM AS "CLIENTE" 
+FROM CLIENT
+WHERE DNI LIKE "%Z";
