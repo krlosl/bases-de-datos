@@ -1,6 +1,15 @@
-SELECT I.InvoiceDate, C.FirstName || ' ' || C.LastName AS CustomerName, C.Address, C.PostalCode, C.Country, (SUM(IL.UnitPrice * IL.Quantity)) AS Total
-FROM Invoice I, Customer C, InvoiceLine IL, Track T
-WHERE I.Customerd = C.Customerld AND I.Invoiceld = IL.InvoiceLineld AND IL.Trackld = T.Trackld
-AND C.City = 'Berlin'
-GROUP BY I.InvoiceDate, C.FirstName, C.LastName, C.Address, C.PostalCode, C.Country
-ORDER BY I.InvoiceDate, C.LastName, C.FirstName, C.Address, C.PostalCode, C.Country;
+-- Muestra todas las facturas de los clientes berlineses. Deberán mostrarse las columnas:
+-- fecha de la factura, nombre completo del cliente, dirección de facturación,
+-- código postal, país, importe (en este orden)
+SELECT I.InvoiceDate as FechaFactura,
+C.FirstName as Nombre, 
+C.LastName as Apellido, 
+C.Address as Direccion, 
+C.PostalCode as CodigoPostal, 
+C.Country as Pais, 
+I.Total as Importe
+FROM Customer as C
+JOIN Invoice as I
+ON I.CustomerId = C.CustomerId
+Where C.City = 'Berlin'
+GROUP BY I.InvoiceDate, C.FirstName, C.LastName, C.Address, C.PostalCode, C.Country, I.Total;

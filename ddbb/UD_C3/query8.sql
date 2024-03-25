@@ -1,5 +1,9 @@
-SELECT E1.FirstName, E1.LastName, E2.FirstName, E2.LastName
-FROM Employee E1, Employee E2
-WHERE E1.Employeeld IN (SELECT Employeeld FROM Employee WHERE FK_Employee_ReportsTo IS NULL)
-AND E1.Employeeld = E2.FK_Employee_ReportsTo
-ORDER BY E1.LastName, E1.FirstName, E2.LastName, E2.FirstName LIMIT 15;
+-- Muestra los nombres de los 15 empleados más jóvenes junto a los nombres de
+-- sus supervisores, si los tienen
+USE Chinook;
+SELECT empleado.FirstName as Empleado, empleado.BirthDate as FechaNacimiento, supervisor.FirstName as Nombre
+FROM Employee as empleado
+JOIN Employee as supervisor
+ON empleado.ReportsTo = supervisor.EmployeeId
+ORDER BY empleado.BirthDate DESC
+LIMIT 5;

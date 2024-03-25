@@ -1,1 +1,2 @@
+USE Chinook;
 SELECT * FROM Invoice WHERE InvoiceDate BETWEEN '2023-01-01' AND '2023-03-31';
