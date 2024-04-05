@@ -200,7 +200,7 @@ FROM Customer C;
 
 ```
 ## Query 20
-De la tabla `Customer`, contamos el id de cliente (`COUNT(CustomerId)`) y seleccionamos el país `Country`, agrupamos los países para que salgan repetidos (`GROUP BY Country`) y delimitamos el contador en mayor que 5 (`HAVING COUNT(CustomerId) > 5`).
+De la base de datos Chinook, contamos el id de cliente y el pais con `COUNT(CustomerId), Country`, y de la tabla Customer agrupamos por países `Country` y contamos los que sean menos de 5 con `HAVING COUNT(CustomerId)` 
 
 ```sql
 /*Cuenta el id de cliente de los paises donde tengamos más de 5 clientes*/
