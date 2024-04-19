@@ -110,8 +110,9 @@ GROUP BY I.InvoiceDate, C.FirstName, C.LastName, C.Address, C.PostalCode, C.Coun
 ```
 
 ## Query 10
-A partir de las tablas con su propio alias: (`Playlist` como `Lista`), (`PlayListTrack` como `PLT`), (`Track` como `track`) y (`Album` como `alb`) la cuales unimos con `JOIN`, seleccionamos el nombre de la lista `Lista` (`Lista.Name`) y la designamos como `Playlist`, el titulo (`track.Name` como `Cancion`), el titulo del album (`alb.Title`como `album`) y los milisegundos (`track.miliseconds` como `Tiempo`) y seleccionamos el `PlaylistId` de __Lista__ que esté asociado con el `PlaylistId` de `PLT`, y con `AND` seleccionamos otras dos listas, `TrackId` (de la tabla `PLT` y de la tabla track) y `AlbumId` (de la tabla `track` y de la tabla `alb`).
-Donde el nombre (`WHERE Lista.Name`) comience por C (`"C%"`) y lo ordenamos por el Id del album y por la duración (`ORDER BY track.AlbumId, track.Miliseconds`), de forma decreciente (`Desc`).
+A partir de las tablas con su propio alias: (`Playlist` como `Lista`), (`PlayListTrack` como `PLT`), (`Track` como `track`) y `Album` como `alb` la cuales unimos con `JOIN`, seleccionamos el nombre de la lista `Lista` (`Lista.Name`) y la designamos como `Playlist`, el titulo y los milisegundos y seleccionamos el `Playlist`Id de Lista que esté asociado con el `Playlist`Id de PLT, y con AND seleccionamos otras dos listas, TrackId de la tabla PLT y de la tabla track y AlbumId de la tabla track y de la tabla alb.
+Donde el nombre comience por C y lo ordenamos por el Id del album y por la duración, de forma decreciente 
+
 
 ```sql
 /* Muestra las listas de reproducción cuyo nombre comienza por C, junto a todas sus canciones, ordenadas por álbum y por duración.*/
@@ -126,7 +127,6 @@ ORDER BY track.AlbumId, track.Milliseconds Desc;
 ```
 
 ## Query 11
-A partir de las tablas `Customer` e `Invoice`, (las cuales designaremos como `C` e `I`), seleccionamos el primer nombre de la tabla `Customer`(`C.FirstName`) y la desginamos como `Nombre`, el apellido de la tabla `Customer` (`C.LastName`) y la desginamos como __Apellido__, el `Id de cliente` de la tabla `Customer` (`C.CustomerId`) y lo designamos como __Id__ y el `Total` de la tabla `Invoice` `I.Total` y lo desginamos como __Precio__, asociamos el `customerId` de la tabla `customer` con el de la tabla `Invoice`, lo ordenamos (`ORDER BY`) por el apellido (`C.LastName`) de forma decreciente (`DESC`).
 
 ```sql
 /*Muestra qué clientes han realizado compras por valores superiores a 10€, ordenados por apellido.*/
@@ -138,13 +138,6 @@ WHERE C.CustomerId = I.CustomerId
 ORDER BY C.LastName DESC;
 ```
 ## Query 12
-De la tabla `Invoice` seleccionamos la media `AVG(Total)`, el minimo `MIN(Total)` y el máximo `MAX(Total)` del total, que son todas las facturas.
-
-__AVG = AVERAGE__
-
-__MIN = MINIMUM__
-
-__MAX = MAXIMUM__
 
 ```sql
 /*Muestra el importe medio, mínimo y máximo de cada factura.*/
@@ -154,7 +147,6 @@ SELECT 	AVG(Total) as Media,
 FROM Invoice;
 ```
 ## Query 13
-A partir de la tabla `Artist`( designada como A), contamos el id de artista de la tabla (`COUNT(A.Artistid)`)
 
 ```sql
 /*Muestra el número total de artistas*/
@@ -162,7 +154,6 @@ SELECT COUNT(DISTINCT A.Artistid) as Artistas
 FROM Artist AS A;
 ```
 ## Query 14
-A partir de la tabla `Track`, (designada como `T`), unimos la tabla `Album` (como `A`), contamos los id de la lista `Track` (`COUNT(T.TrackId)`), como `Canciones`, asociamos el `AlbumId` de la tabla track con el de la tabla A (`T.AlbumId = A.AlbumId `) y le asignamos al título el nombre que se nos pide, en este caso Out Of Time, con (`WHERE A.Title = "Out Of Time"`)
 
 ```sql
 /*Muestra el número de canciones del álbum “Out Of Time”.*/
@@ -200,10 +191,8 @@ FROM Customer C;
 
 ```
 ## Query 20
-De la base de datos Chinook, contamos el id de cliente y el pais con `COUNT(CustomerId), Country`, y de la tabla Customer agrupamos por países `Country` y contamos los que sean menos de 5 con `HAVING COUNT(CustomerId)` 
 
 ```sql
-/*Cuenta el id de cliente de los paises donde tengamos más de 5 clientes*/
 USE Chinook;
 SELECT COUNT(CustomerId), Country
 FROM Customer
