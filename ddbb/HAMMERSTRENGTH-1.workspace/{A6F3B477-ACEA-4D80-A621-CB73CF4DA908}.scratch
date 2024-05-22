@@ -1,4 +1,0 @@
-USE HAMMERSTRENGTH;
-SELECT * FROM usuarios;
-
-UPDATE usuarios SET ciudad = 'prueba' WHERE email = 'prueba' AND pass = 11;

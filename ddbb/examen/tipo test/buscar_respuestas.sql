@@ -1,2 +1,0 @@
-SELECT * FROM RESPUESTA
-WHERE IdRespuesta LIKE "1.%";
