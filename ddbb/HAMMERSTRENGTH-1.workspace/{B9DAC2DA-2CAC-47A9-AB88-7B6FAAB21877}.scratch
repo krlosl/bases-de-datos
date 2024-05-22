@@ -1,0 +1,5 @@
+USE HAMMERSTRENGTH;
+SELECT * FROM usuarios;
+
+DELETE FROM usuarios
+WHERE idUsuarios = 6;
